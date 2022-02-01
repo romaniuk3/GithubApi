@@ -1,0 +1,10 @@
+<div *ngIf="status">
+    <h2>Login: {{repos[0].owner.login}}</h2>
+    <img width="50" height="50" src="{{repos[0].owner.avatar_url}}" alt="">
+    <a href="{{repos[0].owner.html_url}}" target="_blank">Reference to github profile</a>
+
+    <h3>All repositories of {{repos[0].owner.login}}</h3>
+    <ul *ngFor="let repo of repos">
+        <li>{{repo.name}}</li>
+    </ul>
+</div>
