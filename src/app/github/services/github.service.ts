@@ -10,6 +10,5 @@ export class GithubService {
   constructor(private http: HttpClient) { }
 
   getMyOwnData(url: string): Observable<any> {
-    return this.http.get<any>(url)
-  }
-}
+    return this.http.get(url);
+}}

@@ -1,4 +1,4 @@
-<div *ngIf="status">
+<div *ngIf="repos && repos.length > 0; else notFound">
     <h2>Login: {{repos[0].owner.login}}</h2>
     <img width="50" height="50" src="{{repos[0].owner.avatar_url}}" alt="">
     <a href="{{repos[0].owner.html_url}}" target="_blank">Reference to github profile</a>
@@ -8,3 +8,7 @@
         <li>{{repo.name}}</li>
     </ul>
 </div>
+
+<ng-template #notFound>
+    <h2>NOT FOUND</h2>
+</ng-template>
