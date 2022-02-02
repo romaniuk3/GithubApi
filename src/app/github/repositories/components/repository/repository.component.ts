@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-repos',
+  selector: 'app-repository',
   templateUrl: './repository.component.html',
   styleUrls: ['./repository.component.scss']
 })
 export class RepositoryComponent implements OnInit {
 
-  @Input() repositories: any;
+  @Input() filteredRepositories: any;
 
   constructor() { }
 
@@ -15,6 +15,6 @@ export class RepositoryComponent implements OnInit {
   }
 
   get owner() {
-    return this.repositories[0].owner;
+    return this.filteredRepositories[0].owner;
   }
 }

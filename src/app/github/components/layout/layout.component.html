@@ -1,6 +1,5 @@
-<button (click)="getRepos()">Get my own repositories</button>
-<div style="margin-top: 10px;">
-    <input type="text">
-    <button>Find user</button>
-</div>
-<app-repos [repositories]="repositories"></app-repos>
+<app-search-by-reactive-form 
+    [repositories]="repositories"
+    (onRepositoriesRequesting)="getRepositories($event)">
+</app-search-by-reactive-form>
+<app-repository [filteredRepositories]="filteredRepositories"></app-repository>

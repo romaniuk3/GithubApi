@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FilterByNamePipe } from '../../pipes/filter-by-name.pipe';
 import { GithubService } from '../../services/github.service';
 
 @Component({
@@ -8,31 +9,23 @@ import { GithubService } from '../../services/github.service';
 })
 export class LayoutComponent implements OnInit {
 
-  repositories: any;
-  // inputValue: string = '';
+  repositories?: Array<any>;
+  filteredRepositories?: Array<any>;
 
 
-  constructor(private githubService: GithubService) { }
+  constructor(private githubService: GithubService, private filterByNamePipe: FilterByNamePipe) { }
 
   ngOnInit(): void {
   }
 
-  // handleChange(e: any) {
-  //   this.inputValue = e.target.value;
-  //   this.getUser();
-  // }
-
-  getRepos() {
+  getRepositories(query: any = ''): void {
     this.githubService.getRepositories().subscribe((data) => {
       this.repositories = data;
+      this.filterRepositoriesByName(query);
     });
   }
 
-  // getUser() {
-  //   const url = `https://api.github.com/users/${this.inputValue}/repos`;
-  //   this.githubService.getRepositories().subscribe((data) => {
-  //     this.repositories = data;
-  //   });
-  // }
-
+  private filterRepositoriesByName(query: string): void {
+    this.filteredRepositories = this.filterByNamePipe.transform(this.repositories!, query);
+  }
 }

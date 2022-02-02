@@ -4,23 +4,26 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RepositoriesModule } from './repositories/repositories.module';
 import { GithubService } from './services/github.service';
+import { FilterByNamePipe } from './pipes/filter-by-name.pipe';
 
 
 
 @NgModule({
   declarations: [
-    LayoutComponent
+    LayoutComponent,
+    FilterByNamePipe
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    RepositoriesModule
+    RepositoriesModule,
   ],
   exports: [
     LayoutComponent
   ],
   providers: [
-    GithubService
+    GithubService,
+    FilterByNamePipe
   ]
 })
 export class GithubModule { }
