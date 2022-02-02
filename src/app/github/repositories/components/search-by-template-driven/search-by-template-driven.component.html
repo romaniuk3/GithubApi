@@ -1,1 +1,10 @@
-<p>search-by-template-driven works!</p>
+<form class="search-form__driven" (ngSubmit)="searchResult()">
+    <input
+     type="text" 
+     [(ngModel)]="loginForm.query"
+     class="search-driven__input"
+     placeholder="Search by name"
+     name="driven-search"
+     autocomplete="off">
+     <button type="submit">Find</button>
+</form>

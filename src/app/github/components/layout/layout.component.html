@@ -1,5 +1,13 @@
-<app-search-by-reactive-form 
+<div style="display: flex; justify-content: space-evenly" class="forms">
+  <app-search-by-reactive-form
     [repositories]="repositories"
-    (onRepositoriesRequesting)="getRepositories($event)">
-</app-search-by-reactive-form>
+    (onRepositoriesRequesting)="getRepositories($event)"
+  >
+  </app-search-by-reactive-form>
+  <app-search-by-template-driven
+    [repositories]="repositories"
+    (onRepositoriesRequesting)="getRepositories($event)"
+  ></app-search-by-template-driven>
+</div>
+
 <app-repository [filteredRepositories]="filteredRepositories"></app-repository>

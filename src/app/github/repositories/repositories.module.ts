@@ -5,11 +5,14 @@ import { SearchByTemplateDrivenComponent } from './components/search-by-template
 import { SearchByReactiveFormComponent } from './components/search-by-reactive-form/search-by-reactive-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+const exportComponents = [
+  SearchByTemplateDrivenComponent,
+  SearchByReactiveFormComponent,
+  RepositoryComponent
+]
 @NgModule({
   declarations: [
-    RepositoryComponent,
-    SearchByTemplateDrivenComponent,
-    SearchByReactiveFormComponent
+    exportComponents
   ],
   imports: [
     CommonModule,
@@ -17,8 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports: [
-    RepositoryComponent,
-    SearchByReactiveFormComponent
+    exportComponents
   ]
 })
 export class RepositoriesModule { }
