@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { filter, map, fromEvent } from 'rxjs';
+import { filter, map, fromEvent, of, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-search-by-template-driven',
@@ -25,6 +25,15 @@ export class SearchByTemplateDrivenComponent implements OnInit {
   }
 
   searchResult() {
-    this.requestRepositories(this.loginForm.query);
+    console.log(this.loginForm.query)
+    of(this.loginForm.query).pipe(
+      map((formValues) => formValues.query),
+      filter((query) => !/\d+/g.test(query)),
+    )
+    .subscribe((query: string) => {
+      console.log(query)
+      this.requestRepositories(query);
+    })
+    // this.requestRepositories(this.loginForm.query);
   }
 }
