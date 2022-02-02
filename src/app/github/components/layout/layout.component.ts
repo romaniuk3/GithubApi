@@ -8,9 +8,8 @@ import { GithubService } from '../../services/github.service';
 })
 export class LayoutComponent implements OnInit {
 
-  repos: any;
-  active: boolean = false;
-  inputValue: string = '';
+  repositories: any;
+  // inputValue: string = '';
 
 
   constructor(private githubService: GithubService) { }
@@ -18,24 +17,22 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleChange(e: any) {
-    this.inputValue = e.target.value;
-    this.getUser();
-  }
+  // handleChange(e: any) {
+  //   this.inputValue = e.target.value;
+  //   this.getUser();
+  // }
 
   getRepos() {
-    const url = "https://api.github.com/users/romaniuk3/repos";
-    this.githubService.getMyOwnData(url).subscribe((data) => {
-      this.repos = data;
-      this.active = true;
+    this.githubService.getRepositories().subscribe((data) => {
+      this.repositories = data;
     });
   }
-  getUser() {
-    const url = `https://api.github.com/users/${this.inputValue}/repos`;
-    this.githubService.getMyOwnData(url).subscribe((data) => {
-      this.repos = data;
-      this.active = true;
-    });
-  }
+
+  // getUser() {
+  //   const url = `https://api.github.com/users/${this.inputValue}/repos`;
+  //   this.githubService.getRepositories().subscribe((data) => {
+  //     this.repositories = data;
+  //   });
+  // }
 
 }

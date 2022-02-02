@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReposComponent } from './components/repos/repos.component';
+import { RepositoryComponent } from './components/repository/repository.component';
 
 @NgModule({
   declarations: [
-    ReposComponent
+    RepositoryComponent
   ],
   imports: [
     CommonModule,
   ],
   exports: [
-    ReposComponent
+    RepositoryComponent
   ]
 })
 export class RepositoriesModule { }

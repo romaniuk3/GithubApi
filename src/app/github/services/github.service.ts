@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
-  getMyOwnData(url: string): Observable<any> {
+  getRepositories(): Observable<any> {
+    const url = `${environment.githubAPIUrl}/repositories`;
     return this.http.get(url);
 }}

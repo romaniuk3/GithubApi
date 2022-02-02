@@ -1,6 +1,6 @@
 <button (click)="getRepos()">Get my own repositories</button>
 <div style="margin-top: 10px;">
-    <input (input)="handleChange($event)" type="text" value="{{inputValue}}">
-    <button (click)="getUser()">Find user</button>
+    <input type="text">
+    <button>Find user</button>
 </div>
-<app-repos [repos]="repos" [status]="active"></app-repos>
+<app-repos [repositories]="repositories"></app-repos>

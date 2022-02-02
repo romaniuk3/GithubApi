@@ -1,0 +1,13 @@
+<div *ngIf="repositories && repositories.length > 0; else notFound">
+    <h2>Login: {{owner.login}}</h2>
+    <img width="50" height="50" src="{{owner.avatar_url}}" alt="">
+    <a href="{{owner.html_url}}" target="_blank">Reference to github profile</a>
+
+    <h3>All repositories of {{owner.login}}</h3>
+    <ul *ngFor="let repo of repositories">
+        <li>{{repo.name}}</li>
+    </ul>
+</div>
+<ng-template #notFound>
+    <h2>NOT FOUND</h2>
+</ng-template>

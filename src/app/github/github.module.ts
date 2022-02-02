@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RepositoriesModule } from './repositories/repositories.module';
+import { GithubService } from './services/github.service';
 
 
 
@@ -17,6 +18,9 @@ import { RepositoriesModule } from './repositories/repositories.module';
   ],
   exports: [
     LayoutComponent
+  ],
+  providers: [
+    GithubService
   ]
 })
 export class GithubModule { }
