@@ -34,7 +34,6 @@ export class SearchByReactiveFormComponent implements OnInit {
       filter((query) => !/\d+/g.test(query)),
     )
     .subscribe((query: string) => {
-      console.log(query)
       this.requestRepositories(query);
     });
   }

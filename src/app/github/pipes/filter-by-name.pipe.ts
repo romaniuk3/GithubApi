@@ -9,8 +9,7 @@ export class FilterByNamePipe implements PipeTransform {
     if(!repositories) {
       return [];
     }
-    return repositories
-            .filter((repository) => repository.name.includes(query));
+    return repositories.filter((repo) => repo.name.includes(query)).slice(0, 10);
   }
 
 }
