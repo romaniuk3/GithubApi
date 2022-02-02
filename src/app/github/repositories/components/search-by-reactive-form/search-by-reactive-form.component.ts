@@ -31,7 +31,7 @@ export class SearchByReactiveFormComponent implements OnInit {
     .pipe(
       debounceTime(300),
       map((formValues) => formValues.query),
-      filter((query) => !/^\d+$/.test(query)),
+      filter((query) => !/\d+/g.test(query)),
     )
     .subscribe((query: string) => {
       console.log(query)
