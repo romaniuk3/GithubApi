@@ -25,15 +25,8 @@ export class SearchByTemplateDrivenComponent implements OnInit {
   }
 
   searchResult() {
-    console.log(this.loginForm.query)
-    of(this.loginForm.query).pipe(
-      map((formValues) => formValues.query),
-      filter((query) => !/\d+/g.test(query)),
-    )
-    .subscribe((query: string) => {
-      console.log(query)
-      this.requestRepositories(query);
-    })
-    // this.requestRepositories(this.loginForm.query);
+    if(!/\d+/g.test(this.loginForm.query)) {
+      this.requestRepositories(this.loginForm.query);
+    }
   }
 }
