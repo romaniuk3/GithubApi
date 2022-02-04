@@ -8,6 +8,8 @@ import { ProductsReadComponent } from './components/products-read/products-read.
 import { ProductsUpdateComponent } from './components/products-update/products-update.component';
 import { ProductsDeleteComponent } from './components/products-delete/products-delete.component';
 import { ProductsAllComponent } from './components/products-all/products-all.component';
+import { ProductsService } from './services/products.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +24,11 @@ import { ProductsAllComponent } from './components/products-all/products-all.com
   imports: [
     CommonModule,
     ProductsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    ProductsService
   ]
 })
 export class ProductsModule { }
