@@ -15,7 +15,6 @@ export class ProductsReadComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -31,7 +30,6 @@ export class ProductsReadComponent implements OnInit {
         return;
       }
       this.product = product;
-      console.log(this.product)
     });    
   }
 

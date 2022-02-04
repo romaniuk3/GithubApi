@@ -13,7 +13,10 @@
         Expire date: {{product?.expireDate | date: 'mediumDate'}}
     </li>
     <li>
-        Nutrients: {{product?.nutrients}}
+        Product type: {{product?.types}}
     </li>
+    <li>Description: {{product?.description}}</li>
+    <li>Proteins: {{product?.proteins}}g</li>
+    <li>Carbohydrates: {{product?.carbohydrates}}g</li>
 </ul>
 <button [routerLink]="'../../all'">Back</button>
