@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { IndexComponent } from './components/index/index.component';
@@ -28,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    DatePipe
   ]
 })
 export class ProductsModule { }

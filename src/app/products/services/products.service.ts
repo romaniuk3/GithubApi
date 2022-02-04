@@ -9,6 +9,8 @@ export class ProductsService {
 
   private products: Product[] = [];
 
+  private productId: number = 1;
+
   constructor() {
     this.init();
   }
@@ -27,26 +29,32 @@ export class ProductsService {
     return of(this.products);
   }
 
-  public create(product: Product): Observable<Product> {
+  public create(product: Product): Observable<Product | undefined> {
+    product = {...product, id: this.productId};
+    this.productId++;
     if(!product) {
-      return product || undefined;
+      return of(undefined);
     }    
     this.products.push(product);
-    return of(product)
+    return of(product);
   }
 
   public getById(productId: number): Observable<Product | undefined> {
-    // if(!productId || !this.products.length) {
-    //   return undefined;
-    // }
+    if(!productId || !this.products.length) {
+      return of(undefined);
+    }
     const selectedProduct = this.products.find((product: Product) => product.id === productId);
     return of(selectedProduct);
   }
 
   public update(product: Product): Observable<Product | undefined> {
-    // if(!product || !product.id) {
-    //   return undefined;
-    // }
+    if(!product || !product.id) {
+      return of(undefined);
+    }
+
+    const selectedProduct = this.products.findIndex((p: Product) => p.id === product.id);
+    this.products[selectedProduct] = product;
+
     return of(product);
   }
 

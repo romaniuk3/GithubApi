@@ -1,7 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Nutrients, Product } from '../../models/product.model';
+import { Product, Types } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -16,22 +17,23 @@ export class ProductsUpdateComponent implements OnInit {
     name: ['', Validators.required],
     createdDate: [new Date(), Validators.required],
     expireDate: [new Date(), Validators.required],
-    nutrients: [Nutrients.Carbohydrates, Validators.required],
-    milk: ['', Validators.required],
-    groats: ['', Validators.required]
-  })
+    proteins: [50, Validators.required],
+    carbohydrates: [50, Validators.required],
+    types: [Types.Groats, Validators.required],
+    description: ['', Validators.required]
+  });
 
   constructor(
     private fb: FormBuilder,
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
+    private datePipe: DatePipe,
     private router: Router
     ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const productId = params['product_id'];
-      console.log(productId);
       this.getProductById(Number(productId));
     })
   }
@@ -49,7 +51,9 @@ export class ProductsUpdateComponent implements OnInit {
 
   updateForm(product: Product) {
     this.productForm.patchValue({
-      ...product
+      ...product,
+      createdDate: this.datePipe.transform(product.createdDate, 'yyyy-MM-dd'),
+      expireDate: this.datePipe.transform(product.expireDate, 'yyyy-MM-dd')
     });
   }
 
@@ -57,16 +61,15 @@ export class ProductsUpdateComponent implements OnInit {
     const formValues = this.productForm.value;
 
     this.productsService.update(formValues).subscribe((result) => {
-      console.log('result', result)
-
+      
       if(result) {
         this.router.navigate(['../../all'], {relativeTo: this.activatedRoute});
       }
     })
   }
 
-  get Nutrients() {
-    return Nutrients;
+  get Types() {
+    return Types;
   }
 
 }

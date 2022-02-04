@@ -4,17 +4,17 @@ export class Product {
     createdDate: Date;
     expireDate: Date;
     nutrients: Nutrients;
-    milk: string;
-    groats: string;
+    types: Types;
+    description: string;
 
-    constructor({id, name, createdDate, expireDate, nutrients, milk, groats}: Partial<Product> = {}) {
+    constructor({id, name, createdDate, expireDate, nutrients, types, description}: Partial<Product> = {}) {
         this.id = id || Math.random() * 100;
         this.name = name || 'Unknown name';
         this.createdDate = createdDate || new Date();
         this.expireDate = expireDate || new Date();
         this.nutrients = nutrients || Nutrients.Carbohydrates;
-        this.milk = milk || 'Milk';
-        this.groats = groats || 'Groats';
+        this.types = types || Types.Groats;
+        this.description = description || '';
     }
 
 }
@@ -22,4 +22,8 @@ export class Product {
 export enum Nutrients {
     Proteins = 'Proteins',
     Carbohydrates = 'Carbohydrates'    
+}
+export enum Types {
+    Milk = 'Milk',
+    Groats = 'Groats'
 }

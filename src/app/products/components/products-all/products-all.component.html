@@ -7,5 +7,8 @@
 
         <a [routerLink]="['../', product.id, 'update']">Update</a>
         <a [routerLink]="['../', product.id, 'read']">Details</a>
+        <a [routerLink]="['../', product.id, 'delete']">Delete</a>
     </li>
 </ul>
+
+<button [routerLink]="['../', 'add']" type="button">Create product</button>
