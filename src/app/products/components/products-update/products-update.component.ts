@@ -16,7 +16,9 @@ export class ProductsUpdateComponent implements OnInit {
     name: ['', Validators.required],
     createdDate: [new Date(), Validators.required],
     expireDate: [new Date(), Validators.required],
-    nutrients: [Nutrients.Carbohydrates, Validators.required]
+    nutrients: [Nutrients.Carbohydrates, Validators.required],
+    milk: ['', Validators.required],
+    groats: ['', Validators.required]
   })
 
   constructor(

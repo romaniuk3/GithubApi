@@ -17,5 +17,13 @@
         <option [value]="Nutrients.Proteins">{{Nutrients.Proteins}}</option>
     </select>
 
+    <input type="radio" name="milk" id="milk" formControlName="milk">
+    <label for="milk">Milk</label>
+    <input type="radio" name="groats" id="groats" formControlName="groats">
+    <label for="groats">Groats</label>
+
+    <label for="">Choose picture: </label>
+    <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png">
+
     <button type="submit">Update product</button>
 </form>
