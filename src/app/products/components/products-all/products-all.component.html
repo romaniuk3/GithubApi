@@ -1,1 +1,11 @@
-<p>products-all works!</p>
+<ul class="wrapper">
+    <li class="product" *ngFor="let product of products">
+        <span class="product__param">{{product.id}}</span>
+        <span class="product__param">{{product.name}}</span>
+        <span class="product__param">{{product.createdDate | date: 'mediumDate'}}</span>
+        <span class="product__param">{{product.expireDate | date: 'mediumDate'}}</span>
+
+        <a [routerLink]="['../', product.id, 'update']">Update</a>
+        <a [routerLink]="['../', product.id, 'read']">Details</a>
+    </li>
+</ul>

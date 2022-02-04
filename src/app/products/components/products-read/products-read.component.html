@@ -1,1 +1,19 @@
-<p>products-read works!</p>
+<h1>Details</h1>
+<ul class="wrapper">
+    <li>
+        Id: {{product?.id}}
+    </li>
+    <li>
+        Name: {{product?.name}}
+    </li>
+    <li>
+        Date of creation: {{product?.createdDate | date: 'mediumDate'}}
+    </li>
+    <li>
+        Expire date: {{product?.expireDate | date: 'mediumDate'}}
+    </li>
+    <li>
+        Nutrients: {{product?.nutrients}}
+    </li>
+</ul>
+<button [routerLink]="'../../all'">Back</button>

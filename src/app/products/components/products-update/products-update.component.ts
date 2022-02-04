@@ -46,7 +46,25 @@ export class ProductsUpdateComponent implements OnInit {
   }
 
   updateForm(product: Product) {
-    console.log(product)
+    this.productForm.patchValue({
+      ...product
+    });
+  }
+
+  updateProduct() {
+    const formValues = this.productForm.value;
+
+    this.productsService.update(formValues).subscribe((result) => {
+      console.log('result', result)
+
+      if(result) {
+        this.router.navigate(['../../all'], {relativeTo: this.activatedRoute});
+      }
+    })
+  }
+
+  get Nutrients() {
+    return Nutrients;
   }
 
 }

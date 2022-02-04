@@ -1,1 +1,21 @@
-<p>products-update works!</p>
+<form [formGroup]="productForm" (submit)="updateProduct()">
+    <label for="">Id: </label>
+    <input [attr.disabled]="true" type="text" formControlName="id" name="id">
+
+    <label for="">Name: </label>
+    <input type="text" formControlName="name" name="name" autocomplete="off">
+
+    <label for="">Date of creation: </label>
+    <input type="date" formControlName="createdDate" name="createdDate">
+
+    <label for="">Expire date: </label>
+    <input type="date" formControlName="expireDate" name="expireDate">
+
+    <label for="">Nutrients: </label>
+    <select name="nutrients" formControlName="nutrients" id="nutrients">
+        <option [value]="Nutrients.Carbohydrates">{{Nutrients.Carbohydrates}}</option>
+        <option [value]="Nutrients.Proteins">{{Nutrients.Proteins}}</option>
+    </select>
+
+    <button type="submit">Update product</button>
+</form>

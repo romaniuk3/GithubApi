@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../../models/product.model';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-products-read',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsReadComponent implements OnInit {
 
-  constructor() { }
+  product?: Product;
+
+  constructor(
+    private productsService: ProductsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      const productId = params['product_id'];
+      this.getProductById(Number(productId));
+    })
+  }
+
+  getProductById(productId: number) {
+    this.productsService.getById(productId).subscribe((product) => {
+      if(!product) {
+        return;
+      }
+      this.product = product;
+      console.log(this.product)
+    });    
   }
 
 }
