@@ -18,7 +18,6 @@ export class Product {
         this.types = types || Types.Groats;
         this.description = description || '';
     }
-
 }
 
 export enum Nutrients {

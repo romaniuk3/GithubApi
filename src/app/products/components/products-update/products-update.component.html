@@ -54,7 +54,7 @@
             <textarea name="description" formControlName="description" cols="30" rows="10"></textarea>
         </div>
         <div>
-            <button [disabled]="productForm.invalid" class="button" type="submit">Update product</button> 
+            <button mat-button [disabled]="productForm.invalid" class="button" type="submit">Update product</button> 
             <button [routerLink]="['../../all']" type="button">Cancel</button>
         </div>
     </div>

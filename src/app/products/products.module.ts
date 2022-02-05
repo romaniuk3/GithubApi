@@ -10,7 +10,22 @@ import { ProductsDeleteComponent } from './components/products-delete/products-d
 import { ProductsAllComponent } from './components/products-all/products-all.component';
 import { ProductsService } from './services/products.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
+
+const angularMaterial = [
+  MatButtonModule,
+  MatCardModule,
+  MatProgressBarModule,
+  MatDividerModule,
+  MatSnackBarModule,
+  MatFormFieldModule,
+]
 
 @NgModule({
   declarations: [
@@ -25,7 +40,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ProductsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    angularMaterial
   ],
   providers: [
     ProductsService,

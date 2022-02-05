@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -32,5 +32,4 @@ export class ProductsReadComponent implements OnInit {
       this.product = product;
     });    
   }
-
 }

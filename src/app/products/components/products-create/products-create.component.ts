@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Types } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
@@ -25,13 +26,18 @@ export class ProductsCreateComponent implements OnInit {
     private fb: FormBuilder, 
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   get Types() {
     return Types;
+  }
+
+  openSnackBar() {
+    this.snackBar.open('The item was successfully added', 'Got it', {duration: 4000});
   }
 
   createProduct() {
@@ -42,5 +48,4 @@ export class ProductsCreateComponent implements OnInit {
       }
     })
   }
-
 }

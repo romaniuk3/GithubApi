@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Nutrients, Product } from '../models/product.model';
+import { Nutrients, Product, Types } from '../models/product.model';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ProductsService {
 
   public init() {
     const product1 = new Product({name: 'Bread', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product'});
-    const product2 = new Product({ name: 'Milk', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product'});
+    const product2 = new Product({name: 'Milk', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product', types: Types.Milk});
     const product3 = new Product({name: 'Tea', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product'});
 
     this.create(product1).subscribe();

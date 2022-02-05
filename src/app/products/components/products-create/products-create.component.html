@@ -1,59 +1,84 @@
 <form [formGroup]="productForm" (submit)="createProduct()">
-    <div class="form-container">
-        <div>
-            Name
-            <input type="text" class="form-field" formControlName="name">
-        </div>
-        <div>
-            Date of Creation
-            <input type="date" class="form-field" formControlName="createdDate">
-        </div>
-        <div>
-            Expire Date
-            <input type="date" class="form-field" formControlName="expireDate">
-        </div>
-        <div>
-            Product Type
-            <select class="form-field select" formControlName="types">
-                <option value="{{Types.Groats}}">{{Types.Groats}}</option>
-                <option value="{{Types.Milk}}">{{Types.Milk}}</option>
-            </select>
-        </div>
-        <div>
-            Proteins
-            <input type="range" class="form-field"
-             list="proteins-ticks" min="50" max="100" formControlName="proteins">
-            <datalist id="proteins-ticks">
-                <option value="50" label="50"></option>
-                <option value="60"></option>
-                <option value="70"></option>
-                <option value="80"></option>
-                <option value="90"></option>
-                <option value="100" label="100"></option>
-            </datalist>
-        </div>
-        <div>
-            Carbohydrates
-            <input type="range" class="form-field"
-             list="carbohydrates-ticks" min="50" max="100" formControlName="carbohydrates">
-            <datalist id="carbohydrates-ticks">
-                <option value="50" label="50"></option>
-                <option value="60"></option>
-                <option value="70"></option>
-                <option value="80"></option>
-                <option value="90"></option>
-                <option value="100" label="100"></option>
-            </datalist>
-        </div>
-        <div>
-            Description
-            <textarea name="description" formControlName="description" cols="30" rows="10"></textarea>
-        </div>
-        <div>
-            <button [disabled]="productForm.invalid" class="button" type="submit">Add product</button> 
-        </div>
-        <div>
-            <button [routerLink]="['../']" type="button">Cancel</button>
-        </div>
+  <div class="form-container">
+    <div>
+      Name
+      <input type="text" class="form-field" formControlName="name" />
     </div>
+    <div>
+      Date of Creation
+      <input type="date" class="form-field" formControlName="createdDate" />
+    </div>
+    <div>
+      Expire Date
+      <input type="date" class="form-field" formControlName="expireDate" />
+    </div>
+    <div>
+      Product Type
+      <select class="form-field select" formControlName="types">
+        <option value="{{ Types.Groats }}">{{ Types.Groats }}</option>
+        <option value="{{ Types.Milk }}">{{ Types.Milk }}</option>
+      </select>
+    </div>
+    <div>
+      Proteins
+      <input
+        type="range"
+        class="form-field"
+        list="proteins-ticks"
+        min="50"
+        max="100"
+        formControlName="proteins"
+      />
+      <datalist id="proteins-ticks">
+        <option value="50" label="50"></option>
+        <option value="60"></option>
+        <option value="70"></option>
+        <option value="80"></option>
+        <option value="90"></option>
+        <option value="100" label="100"></option>
+      </datalist>
+    </div>
+    <div>
+      Carbohydrates
+      <input
+        type="range"
+        class="form-field"
+        list="carbohydrates-ticks"
+        min="50"
+        max="100"
+        formControlName="carbohydrates"
+      />
+      <datalist id="carbohydrates-ticks">
+        <option value="50" label="50"></option>
+        <option value="60"></option>
+        <option value="70"></option>
+        <option value="80"></option>
+        <option value="90"></option>
+        <option value="100" label="100"></option>
+      </datalist>
+    </div>
+    <div>
+      Description
+      <textarea
+        name="description"
+        formControlName="description"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+    <div>
+      <button
+        mat-stroked-button
+        (click)="openSnackBar()"
+        [disabled]="productForm.invalid"
+        class="button"
+        type="submit"
+      >
+        Add product
+      </button>
+    </div>
+    <div>
+      <button [routerLink]="['../']" type="button">Cancel</button>
+    </div>
+  </div>
 </form>

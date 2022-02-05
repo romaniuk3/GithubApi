@@ -1,14 +1,22 @@
-<ul class="wrapper">
-    <li class="product" *ngFor="let product of products">
-        <span class="product__param">{{product.id}}</span>
-        <span class="product__param">{{product.name}}</span>
-        <span class="product__param">{{product.createdDate | date: 'mediumDate'}}</span>
-        <span class="product__param">{{product.expireDate | date: 'mediumDate'}}</span>
-
-        <a [routerLink]="['../', product.id, 'update']">Update</a>
-        <a [routerLink]="['../', product.id, 'read']">Details</a>
-        <a [routerLink]="['../', product.id, 'delete']">Delete</a>
-    </li>
-</ul>
-
-<button [routerLink]="['../', 'add']" type="button">Create product</button>
+<div class="wrapper">
+  <div style="width: 300px; padding: 20px" *ngFor="let product of products">
+    <mat-card class="example-card">
+      <mat-card-subtitle>{{product.types}}</mat-card-subtitle>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-content>
+        <p>{{product.description}}</p>
+      </mat-card-content>
+      <mat-divider inset></mat-divider>
+      <mat-card-actions>
+        <button [routerLink]="['../', product.id, 'update']" mat-button>Update</button>
+        <button [routerLink]="['../', product.id, 'read']" mat-button>Details</button>
+        <button [routerLink]="['../', product.id, 'delete']" mat-button>Delete</button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <mat-progress-bar *ngIf="product.types === 'Milk'" mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar *ngIf="product.types === 'Groats'" color="warn" mode="indeterminate"></mat-progress-bar>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
+<button style="margin: 20px;" mat-raised-button [routerLink]="['../', 'add']" type="button">Create product</button>
