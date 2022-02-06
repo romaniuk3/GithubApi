@@ -1,0 +1,28 @@
+.card__item {
+    color: #673ab7;
+}
+.details-header {
+    padding: 20px;
+    font: 36px Roboto, "Helvetica Neue", sans-serif;
+}
+.details-card {
+    width: max-content;
+    padding: 20px;
+    margin: 0 auto;
+
+    &__content {
+        font-size: 18px;
+        padding: 20px;
+    }
+    &__title {
+        padding: 0px 20px;
+    }
+    &__subtitle {
+        padding: 0px 20px;
+    }
+    &__buttons {
+        padding: 0px 20px;
+    }
+
+
+}

@@ -16,8 +16,8 @@ export class ProductsCreateComponent implements OnInit {
     name: ['', Validators.required],
     createdDate: [new Date(), Validators.required],
     expireDate: [new Date(), Validators.required],
-    proteins: [50, Validators.required],
-    carbohydrates: [50, Validators.required],
+    proteins: [1.4, Validators.required],
+    carbohydrates: [2.8, Validators.required],
     types: [Types.Groats, Validators.required],
     description: ['', Validators.required]
   });
@@ -36,7 +36,7 @@ export class ProductsCreateComponent implements OnInit {
     return Types;
   }
 
-  openSnackBar() {
+  showMessage() {
     this.snackBar.open('The item was successfully added', 'Got it', {duration: 4000});
   }
 
