@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
+import { ProductsDeleteComponent } from '../products-delete/products-delete.component';
 
 @Component({
   selector: 'app-products-all',
@@ -23,5 +25,4 @@ export class ProductsAllComponent implements OnInit {
         this.products = products;
       });
   }
-
 }

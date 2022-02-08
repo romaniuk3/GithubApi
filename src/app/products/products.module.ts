@@ -11,6 +11,8 @@ import { ProductsAllComponent } from './components/products-all/products-all.com
 import { ProductsService } from './services/products.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialExampleModule } from 'src/material.module';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { MaterialExampleModule } from 'src/material.module';
     ProductsReadComponent,
     ProductsUpdateComponent,
     ProductsDeleteComponent,
-    ProductsAllComponent
+    ProductsAllComponent,
+    DeleteDialogComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,

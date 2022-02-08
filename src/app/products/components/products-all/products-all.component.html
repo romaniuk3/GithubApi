@@ -10,7 +10,9 @@
       <mat-card-actions>
         <button [routerLink]="['../', product.id, 'update']" mat-button>Update</button>
         <button [routerLink]="['../', product.id, 'read']" mat-button>Details</button>
-        <button [routerLink]="['../', product.id, 'delete']" mat-button>Delete</button>
+        <app-products-delete></app-products-delete>
+        <!-- <button (click)="openDialog()" mat-button>Delete</button> -->
+        <!-- [routerLink]="['../', product.id, 'delete']" -->
       </mat-card-actions>
       <mat-card-footer>
         <mat-progress-bar *ngIf="product.types === 'Milk'" mode="indeterminate"></mat-progress-bar>

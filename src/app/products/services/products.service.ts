@@ -16,7 +16,12 @@ export class ProductsService {
   }
 
   public init() {
-    const product1 = new Product({name: 'Rice', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product'});
+    const product1 = new Product(
+      {
+        name: 'Rice', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, 
+        carbohydrates: Nutrients.Carbohydrates, 
+        description: 'Healthy product'
+      });
     const product2 = new Product({name: 'Milk', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product', types: Types.Milk});
     const product3 = new Product({name: 'Buckwheat', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product'});
 
