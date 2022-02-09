@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
-import { ProductsDeleteComponent } from '../products-delete/products-delete.component';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-products-all',
@@ -13,7 +13,8 @@ export class ProductsAllComponent implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -24,5 +25,25 @@ export class ProductsAllComponent implements OnInit {
       .subscribe((products: Product[]) => {
         this.products = products;
       });
+  }
+
+  deleteProduct(product: Product) {
+    const deleteModalRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        productId: product.id
+      }
+    });
+
+    deleteModalRef.afterClosed().subscribe((result) => {
+      if (result){
+        this.productsService.delete(Number(result)).subscribe((res) => {
+          if(!res) {
+            return;
+          }
+          this.getProducts();
+        });
+      }
+
+    })
   }
 }

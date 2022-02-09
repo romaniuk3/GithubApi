@@ -6,13 +6,13 @@ import { IndexComponent } from './components/index/index.component';
 import { ProductsCreateComponent } from './components/products-create/products-create.component';
 import { ProductsReadComponent } from './components/products-read/products-read.component';
 import { ProductsUpdateComponent } from './components/products-update/products-update.component';
-import { ProductsDeleteComponent } from './components/products-delete/products-delete.component';
 import { ProductsAllComponent } from './components/products-all/products-all.component';
 import { ProductsService } from './services/products.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialExampleModule } from 'src/material.module';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +21,6 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ProductsCreateComponent,
     ProductsReadComponent,
     ProductsUpdateComponent,
-    ProductsDeleteComponent,
     ProductsAllComponent,
     DeleteDialogComponent,
     ProductFormComponent
@@ -31,7 +30,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ProductsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialExampleModule
+    MaterialExampleModule,
+    SharedModule
   ],
   providers: [
     ProductsService,

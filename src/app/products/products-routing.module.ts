@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { IndexComponent } from './components/index/index.component';
 import { ProductsAllComponent } from './components/products-all/products-all.component';
 import { ProductsCreateComponent } from './components/products-create/products-create.component';
-import { ProductsDeleteComponent } from './components/products-delete/products-delete.component';
 import { ProductsReadComponent } from './components/products-read/products-read.component';
 import { ProductsUpdateComponent } from './components/products-update/products-update.component';
 
@@ -29,7 +29,7 @@ const routes: Routes = [
           },
           {
             path: 'delete',
-            component: ProductsDeleteComponent
+            component: DeleteDialogComponent
           },
           {
             path: 'read',

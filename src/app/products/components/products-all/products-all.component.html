@@ -10,8 +10,8 @@
       <mat-card-actions>
         <button [routerLink]="['../', product.id, 'update']" mat-button>Update</button>
         <button [routerLink]="['../', product.id, 'read']" mat-button>Details</button>
-        <app-products-delete></app-products-delete>
-        <!-- <button (click)="openDialog()" mat-button>Delete</button> -->
+        <!-- <app-products-delete [productId]="product.id"></app-products-delete> -->
+        <button (click)="deleteProduct(product)" mat-button>Delete</button>
         <!-- [routerLink]="['../', product.id, 'delete']" -->
       </mat-card-actions>
       <mat-card-footer>
