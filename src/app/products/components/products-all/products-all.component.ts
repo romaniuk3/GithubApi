@@ -21,10 +21,9 @@ export class ProductsAllComponent implements OnInit {
   }
 
   getProducts() {
-    this.productsService.getAll()
-      .subscribe((products: Product[]) => {
-        this.products = products;
-      });
+    this.productsService.getAll().subscribe((res: Product[]) => {
+      this.products = res;
+    });
   }
 
   deleteProduct(product: Product) {
@@ -36,14 +35,10 @@ export class ProductsAllComponent implements OnInit {
 
     deleteModalRef.afterClosed().subscribe((result) => {
       if (result){
-        this.productsService.delete(Number(result)).subscribe((res) => {
-          if(!res) {
-            return;
-          }
+        this.productsService.delete(result).then(() => {
           this.getProducts();
         });
       }
-
-    })
+    });
   }
 }

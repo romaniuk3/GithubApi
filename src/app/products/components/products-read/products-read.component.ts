@@ -20,15 +20,12 @@ export class ProductsReadComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const productId = params['product_id'];
-      this.getProductById(Number(productId));
+      this.getProductById(productId);
     })
   }
 
-  getProductById(productId: number) {
+  getProductById(productId: string) {
     this.productsService.getById(productId).subscribe((product) => {
-      if(!product) {
-        return;
-      }
       this.product = product;
     });    
   }

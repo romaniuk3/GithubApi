@@ -22,7 +22,7 @@ export class ProductsUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const productId = params['product_id'];
-      this.getProductById(Number(productId));
+      this.getProductById(productId);
     })
   }
 
@@ -30,15 +30,7 @@ export class ProductsUpdateComponent implements OnInit {
     this.snackBar.open('The item was successfully updated', 'Got it', {duration: 4000});
   }
 
-  // updateForm(product: Product) {
-  //   this.productForm.patchValue({
-  //     ...product,
-  //     createdDate: this.datePipe.transform(product.createdDate, 'yyyy-MM-dd'),
-  //     expireDate: this.datePipe.transform(product.expireDate, 'yyyy-MM-dd')
-  //   });
-  // }
-
-  getProductById(productId: number) {
+  getProductById(productId: string) {
     this.productsService.getById(productId)
       .subscribe((product) => {
         if(!product) {
@@ -50,18 +42,9 @@ export class ProductsUpdateComponent implements OnInit {
   }
 
   updateProduct(product: Product) {
-    console.log(product)
-    // console.log(product)
-    this.productsService.update(product).subscribe((result) => {
-      // console.log(result)
-      if(result) {
-        this.router.navigate(['../../all'], {relativeTo: this.activatedRoute});
-      }
-    })
-
-    // this.productsService.getById(id).subscribe((res) => {
-    //   console.log(res);
-    // })
+    this.productsService.update(product).then(() => {
+      this.router.navigate(['../../all'], {relativeTo: this.activatedRoute});
+    });
   }
 
   get Types() {

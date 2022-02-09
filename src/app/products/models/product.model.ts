@@ -1,5 +1,5 @@
 export class Product {
-    id: number;
+    id: string;
     name: string;
     createdDate: Date;
     expireDate: Date;
@@ -9,7 +9,7 @@ export class Product {
     description: string;
 
     constructor({id, name, createdDate, expireDate, proteins, carbohydrates ,types, description}: Partial<Product> = {}) {
-        this.id = id || Math.random() * 100;
+        this.id = id || '';
         this.name = name || 'Unknown name';
         this.createdDate = createdDate || new Date();
         this.expireDate = expireDate || new Date();

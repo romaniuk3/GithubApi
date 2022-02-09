@@ -3,8 +3,8 @@
     <mat-card-title class="details-card__title">{{product?.name}}</mat-card-title>
     <mat-card-subtitle class="details-card__subtitle">{{product?.types}}</mat-card-subtitle>
     <mat-card-content class="details-card__content">
-      <p><span class="card__item">Date of creation:</span> {{product?.createdDate | date: 'mediumDate'}}</p>
-      <p><span class="card__item">Expire date:</span> {{product?.expireDate | date: 'mediumDate'}}</p>
+      <p><span class="card__item">Date of creation:</span> {{product?.createdDate | dateFix | date}}</p>
+      <p><span class="card__item">Expire date:</span> {{product?.expireDate | dateFix | date }}</p>
       <p><span class="card__item">Description:</span> {{product?.description}}
       <p><span class="card__item">Proteins:</span> {{product?.proteins}}g</p>
       <p><span class="card__item">Carbohydrates:</span> {{product?.carbohydrates}}g</p>

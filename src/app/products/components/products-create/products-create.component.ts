@@ -29,10 +29,6 @@ export class ProductsCreateComponent implements OnInit {
   }
 
   createProduct(product: Product) {
-    this.productsService.create(product).subscribe((result) => {
-      if(result) {
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-      }
-    })
+    this.productsService.create(product).then(() => this.router.navigate(['../'], {relativeTo: this.activatedRoute}));
   }
 }

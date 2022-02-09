@@ -13,6 +13,7 @@ import { MaterialExampleModule } from 'src/material.module';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { DateFixPipe } from './pipes/date-fix.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     ProductsUpdateComponent,
     ProductsAllComponent,
     DeleteDialogComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    DateFixPipe
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     ProductsService,
-    DatePipe
+    DatePipe, 
+    DateFixPipe
   ]
 })
 export class ProductsModule { }

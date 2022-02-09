@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "product-database-2997c": {
+      "hosting": {
+        "github-task": [
+          "product-database-2997c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "product-database-2997c"
+  }
+}

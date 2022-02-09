@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Nutrients, Product, Types } from '../models/product.model';
 import { Observable, of } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+import {
+  Firestore, addDoc, collection, collectionData,
+  doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -9,65 +14,32 @@ export class ProductsService {
 
   private products: Product[] = [];
 
-  private productId: number = 1;
-
-  constructor() {
-    this.init();
-  }
-
-  public init() {
-    const product1 = new Product(
-      {
-        name: 'Rice', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, 
-        carbohydrates: Nutrients.Carbohydrates, 
-        description: 'Healthy product'
-      });
-    const product2 = new Product({name: 'Milk', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product', types: Types.Milk});
-    const product3 = new Product({name: 'Buckwheat', createdDate: new Date(), expireDate: new Date(), proteins: Nutrients.Proteins, carbohydrates: Nutrients.Carbohydrates, description: 'Healthy product'});
-
-    this.create(product1).subscribe();
-    this.create(product2).subscribe();
-    this.create(product3).subscribe();
-  }
+  constructor(private firestore: Firestore) { }
 
   public getAll() {
-    return of(this.products);
+    const productsRef = collection(this.firestore, 'products');
+    return collectionData(productsRef, {idField: 'id'}) as Observable<Product[]>;
+
   }
 
-  public create(product: Product): Observable<Product | undefined> {
-    product = {...product, id: this.productId};
-    this.productId++;
-    if(!product) {
-      return of(undefined);
-    }    
-    this.products.push(product);
-    return of(product);
+  public create(product: Product) {
+    product = {...product, id: uuidv4()};
+    const productRef  = collection(this.firestore, 'products');
+    return addDoc(productRef, product);
   }
 
-  public getById(productId: number): Observable<Product | undefined> {
-    if(!productId || !this.products.length) {
-      return of(undefined);
-    }
-    const selectedProduct = this.products.find((product: Product) => product.id === productId);
-    return of(selectedProduct);
+  public getById(id: string) {
+    const productRef = doc(this.firestore, `products/${id}`);
+    return docData(productRef, {idField: 'id'}) as Observable<Product>;
   }
 
-  public update(product: Product): Observable<Product | undefined> {
-    if(!product || !product.id) {
-      return of(undefined);
-    }
-
-    const selectedProduct = this.products.findIndex((p: Product) => p.id === product.id);
-    this.products[selectedProduct] = product;
-
-    return of(product);
+  public update(product: Product) {
+    const productRef = doc(this.firestore, `products/${product.id}`);
+    return setDoc(productRef, product);
   }
 
-  public delete(productId: number): Observable<boolean> {
-    if(!productId) {
-      return of(false);
-    }
-    this.products = this.products.filter((p: Product) => p.id !== productId);
-    return of(true);
+  public delete(productId: string): Promise<any> {
+    const productDocRef = doc(this.firestore, `products/${productId}`);
+    return deleteDoc(productDocRef);
   }
 }

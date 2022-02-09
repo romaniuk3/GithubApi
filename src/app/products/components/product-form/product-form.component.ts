@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product, Types } from '../../models/product.model';
+import { DateFixPipe } from '../../pipes/date-fix.pipe';
 
 @Component({
   selector: 'app-product-form',
@@ -20,7 +21,8 @@ export class ProductFormComponent implements OnInit, OnChanges {
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private dateFix: DateFixPipe
   ) {
     this.initForm();
   }
@@ -46,11 +48,16 @@ export class ProductFormComponent implements OnInit, OnChanges {
     });
   }
 
+  fixDate(date: any) {
+    let transformToDate = this.dateFix.transform(date);
+    return this.datePipe.transform(transformToDate, 'yyyy-MM-dd');
+  }
+
   updateForm(product: Product) {
     this.productForm.patchValue({
       ...product,
-      createdDate: this.datePipe.transform(product.createdDate, 'yyyy-MM-dd'),
-      expireDate: this.datePipe.transform(product.expireDate, 'yyyy-MM-dd')
+      createdDate:  this.fixDate(product.createdDate),
+      expireDate: this.fixDate(product.expireDate)
     });
     this.message = 'The item was successfully updated';
   }
