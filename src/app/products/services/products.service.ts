@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Nutrients, Product, Types } from '../models/product.model';
-import { Observable, of } from 'rxjs';
+import { Product } from '../models/product.model';
+import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import {
   Firestore, addDoc, collection, collectionData,
-  doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc
+  doc, docData, deleteDoc, setDoc
 } from '@angular/fire/firestore';
 
 @Injectable({
@@ -12,14 +12,11 @@ import {
 })
 export class ProductsService {
 
-  private products: Product[] = [];
-
   constructor(private firestore: Firestore) { }
 
   public getAll() {
     const productsRef = collection(this.firestore, 'products');
     return collectionData(productsRef, {idField: 'id'}) as Observable<Product[]>;
-
   }
 
   public create(product: Product) {

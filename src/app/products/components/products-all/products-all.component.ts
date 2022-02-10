@@ -12,6 +12,7 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 export class ProductsAllComponent implements OnInit {
 
   products: Product[] = [];
+  showLoading: boolean = true;
 
   constructor(private productsService: ProductsService,
     private dialog: MatDialog) { }
@@ -23,6 +24,7 @@ export class ProductsAllComponent implements OnInit {
   getProducts() {
     this.productsService.getAll().subscribe((res: Product[]) => {
       this.products = res;
+      this.showLoading = false;
     });
   }
 
