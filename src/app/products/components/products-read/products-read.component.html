@@ -8,6 +8,7 @@
       <p><span class="card__item">Description:</span> {{product?.description}}
       <p><span class="card__item">Proteins:</span> {{product?.proteins}}g</p>
       <p><span class="card__item">Carbohydrates:</span> {{product?.carbohydrates}}g</p>
+      <img width="300" height="300" class="card__image" src='{{product?.image}}' alt="">
     </mat-card-content>
     <mat-card-actions class="details-card__buttons">
       <button [routerLink]="['../update']" mat-button>Update</button>

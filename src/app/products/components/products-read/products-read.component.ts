@@ -27,6 +27,7 @@ export class ProductsReadComponent implements OnInit {
   getProductById(productId: string) {
     this.productsService.getById(productId).subscribe((product) => {
       this.product = product;
-    });    
+      console.log(this.product)
+    });
   }
 }

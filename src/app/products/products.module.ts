@@ -14,6 +14,7 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { DateFixPipe } from './pipes/date-fix.pipe';
+import {MatFileUploadModule} from "angular-material-fileupload";
 
 
 @NgModule({
@@ -33,11 +34,12 @@ import { DateFixPipe } from './pipes/date-fix.pipe';
     FormsModule,
     ReactiveFormsModule,
     MaterialExampleModule,
-    SharedModule
+    SharedModule,
+    MatFileUploadModule
   ],
   providers: [
     ProductsService,
-    DatePipe, 
+    DatePipe,
     DateFixPipe
   ]
 })

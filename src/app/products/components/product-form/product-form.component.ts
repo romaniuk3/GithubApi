@@ -4,6 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product, Types } from '../../models/product.model';
 import { DateFixPipe } from '../../pipes/date-fix.pipe';
+import {
+  Storage,
+  ref, uploadBytes, getDownloadURL
+} from "@angular/fire/storage";
 
 @Component({
   selector: 'app-product-form',
@@ -15,6 +19,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
   @Input() product = new Product();
   @Output() onSubmitted = new EventEmitter();
   message: string = '';
+  path?: File
 
   productForm: FormGroup = this.fb.group({});
 
@@ -22,7 +27,8 @@ export class ProductFormComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private datePipe: DatePipe,
-    private dateFix: DateFixPipe
+    private dateFix: DateFixPipe,
+    private storage: Storage
   ) {
     this.initForm();
   }
@@ -44,7 +50,8 @@ export class ProductFormComponent implements OnInit, OnChanges {
       proteins: [1.4, Validators.required],
       carbohydrates: [2.8, Validators.required],
       types: [Types.Groats, Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      image: ['', Validators.required]
     });
   }
 
@@ -72,6 +79,27 @@ export class ProductFormComponent implements OnInit, OnChanges {
     }else {
       this.snackBar.open('The item was successfully added', 'Got it', {duration: 4000});
     }
+  }
+
+  upload($event: any) {
+  this.path = $event.target.files[0];
+  }
+
+  uploadImage() {
+    const fileName = `${Date.now()}img`
+    const storageRef = ref(this.storage, fileName);
+    uploadBytes(storageRef, this.path!).then((snapshot) => {
+      this.getImage(fileName);
+    })
+  }
+
+  getImage(fileName: string) {
+    const fileRef = ref(this.storage, `${fileName}`);
+    console.log(fileRef);
+
+    getDownloadURL(fileRef).then((url) => {
+      this.productForm.value.image = url;
+    })
   }
 
   submit() {

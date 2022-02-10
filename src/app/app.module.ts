@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { GithubModule } from './github/github.module';
 import { ProductsModule } from './products/products.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireModule } from '@angular/fire/compat';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     GithubModule,
     ProductsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

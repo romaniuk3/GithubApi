@@ -7,8 +7,10 @@ export class Product {
     carbohydrates: Nutrients;
     types: Types;
     description: string;
+    image: string;
 
-    constructor({id, name, createdDate, expireDate, proteins, carbohydrates ,types, description}: Partial<Product> = {}) {
+
+    constructor({id, name, createdDate, expireDate, proteins, carbohydrates ,types, description, image}: Partial<Product> = {}) {
         this.id = id || '';
         this.name = name || 'Unknown name';
         this.createdDate = createdDate || new Date();
@@ -17,12 +19,13 @@ export class Product {
         this.proteins = proteins || Nutrients.Proteins;
         this.types = types || Types.Groats;
         this.description = description || '';
+        this.image = image || '';
     }
 }
 
 export enum Nutrients {
     Proteins = 1.5,
-    Carbohydrates = 11.3    
+    Carbohydrates = 11.3
 }
 export enum Types {
     Milk = 'Milk',

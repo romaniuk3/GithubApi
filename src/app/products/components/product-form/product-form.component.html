@@ -48,6 +48,13 @@
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
   </div>
+  <div class="create-form__image">
+    <mat-label>Choose image</mat-label>
+    <input type="file" (change)="upload($event)"
+           formControlName="image" accept=".jpg, .jpeg, .png" name="" id="image">
+  </div>
+  <button class="create-form__upload" mat-raised-button type="button" (click)="uploadImage()">Upload image</button>
+
   <div class="create-form__buttons">
     <button
       mat-stroked-button
