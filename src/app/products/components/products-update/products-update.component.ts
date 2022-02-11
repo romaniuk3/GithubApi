@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product, Types } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
@@ -17,17 +16,13 @@ export class ProductsUpdateComponent implements OnInit {
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar) { }
+    ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const productId = params['product_id'];
       this.getProductById(productId);
     })
-  }
-
-  showMessage() {
-    this.snackBar.open('The item was successfully updated', 'Got it', {duration: 4000});
   }
 
   getProductById(productId: string) {
@@ -50,5 +45,4 @@ export class ProductsUpdateComponent implements OnInit {
   get Types() {
     return Types;
   }
-
 }

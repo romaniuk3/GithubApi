@@ -64,6 +64,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
   updateForm(product: Product) {
     this.productForm.patchValue({
       ...product,
+      image: '',
       createdDate:  this.fixDate(product.createdDate),
       expireDate: this.fixDate(product.expireDate)
     });
