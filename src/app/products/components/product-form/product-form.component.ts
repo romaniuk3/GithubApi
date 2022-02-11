@@ -19,7 +19,8 @@ export class ProductFormComponent implements OnInit, OnChanges {
   @Input() product = new Product();
   @Output() onSubmitted = new EventEmitter();
   message: string = '';
-  path?: File
+  path?: File;
+  isUpload: boolean = false;
 
   productForm: FormGroup = this.fb.group({});
 
@@ -82,20 +83,20 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   upload($event: any) {
-  this.path = $event.target.files[0];
+    this.path = $event.target.files[0];
   }
 
   uploadImage() {
     const fileName = `${Date.now()}img`
     const storageRef = ref(this.storage, fileName);
     uploadBytes(storageRef, this.path!).then((snapshot) => {
+      this.isUpload = true;
       this.getImage(fileName);
     })
   }
 
   getImage(fileName: string) {
     const fileRef = ref(this.storage, `${fileName}`);
-    console.log(fileRef);
 
     getDownloadURL(fileRef).then((url) => {
       this.productForm.value.image = url;

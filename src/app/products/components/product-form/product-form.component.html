@@ -48,9 +48,13 @@
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
   </div>
-  <div class="create-form__image">
-    <mat-label>Choose image</mat-label>
-    <input type="file" (change)="upload($event)"
+  <div class="input__wrapper">
+    <label for="image" class="input__file-button">
+      <span class="input__file-button-text">Choose image</span>
+    </label>
+    <span>{{path?.name}}</span>
+    <p *ngIf="isUpload" class="input__status">Uploaded</p>
+    <input style="visibility: hidden" type="file" (change)="upload($event)"
            formControlName="image" accept=".jpg, .jpeg, .png" name="" id="image">
   </div>
   <button class="create-form__upload" mat-raised-button type="button" (click)="uploadImage()">Upload image</button>
