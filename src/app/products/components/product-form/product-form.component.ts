@@ -85,9 +85,6 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
   upload($event: any) {
     this.path = $event.target.files[0];
-  }
-
-  uploadImage() {
     const fileName = `${Date.now()}img`
     const storageRef = ref(this.storage, fileName);
     uploadBytes(storageRef, this.path!).then((snapshot) => {

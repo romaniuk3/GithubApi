@@ -24,9 +24,6 @@ export class ProductsCreateComponent implements OnInit {
     return Types;
   }
 
-  showMessage() {
-    this.snackBar.open('The item was successfully added', 'Got it', {duration: 4000});
-  }
 
   createProduct(product: Product) {
     this.productsService.create(product).then(() => this.router.navigate(['../'], {relativeTo: this.activatedRoute}));
