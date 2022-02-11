@@ -1,16 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'dateFix'
 })
 export class DateFixPipe implements PipeTransform {
 
-  transform(date: any = 0): number {
+  transform(date: any = 0): Date | undefined {
     if(date) {
-      let newDate = date.toDate();
-      return newDate.getTime();
+      return new Date(date.seconds * 1000)
     }
-    return 0; 
+    return undefined
   }
 
 }

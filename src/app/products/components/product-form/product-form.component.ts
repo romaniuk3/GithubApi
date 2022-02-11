@@ -55,17 +55,16 @@ export class ProductFormComponent implements OnInit, OnChanges {
       image: ['', Validators.required]
     });
   }
-
   fixDate(date: any) {
-    let transformToDate = this.dateFix.transform(date);
-    return this.datePipe.transform(transformToDate, 'yyyy-MM-dd');
+    let formattedDate = this.dateFix.transform(date);
+    return this.datePipe.transform(formattedDate, 'yyyy-MM-dd');
   }
 
   updateForm(product: Product) {
     this.productForm.patchValue({
       ...product,
       image: '',
-      createdDate:  this.fixDate(product.createdDate),
+      createdDate: this.fixDate(product.createdDate),
       expireDate: this.fixDate(product.expireDate)
     });
     this.message = 'The item was successfully updated';
