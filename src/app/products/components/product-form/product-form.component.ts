@@ -4,10 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product, Types } from '../../models/product.model';
 import { DateFixPipe } from '../../pipes/date-fix.pipe';
-import {
-  Storage,
-  ref, uploadBytes, getDownloadURL
-} from "@angular/fire/storage";
+import {ProductsService} from "../../services/products.service";
 
 @Component({
   selector: 'app-product-form',
@@ -19,7 +16,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
   @Input() product = new Product();
   @Output() onSubmitted = new EventEmitter();
   message: string = '';
-  path?: File;
+  file?: File;
   isUpload: boolean = false;
 
   productForm: FormGroup = this.fb.group({});
@@ -29,7 +26,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
     private snackBar: MatSnackBar,
     private datePipe: DatePipe,
     private dateFix: DateFixPipe,
-    private storage: Storage
+    private productsService: ProductsService
   ) {
     this.initForm();
   }
@@ -82,26 +79,21 @@ export class ProductFormComponent implements OnInit, OnChanges {
     }
   }
 
-  upload($event: any) {
-    this.path = $event.target.files[0];
-    const fileName = `${Date.now()}img`
-    const storageRef = ref(this.storage, fileName);
-    uploadBytes(storageRef, this.path!).then((snapshot) => {
-      this.isUpload = true;
-      this.getImage(fileName);
-    })
+  setFile($event: any) {
+    this.file = $event.target.files[0];
   }
 
-  getImage(fileName: string) {
-    const fileRef = ref(this.storage, `${fileName}`);
-
-    getDownloadURL(fileRef).then((url) => {
-      this.productForm.value.image = url;
-    })
-  }
 
   submit() {
-    const product: Partial<Product> = this.productForm.value;
-    this.onSubmitted.emit(product);
+    let product: Partial<Product>;
+    if(this.file) {
+      this.productsService.uploadImage(this.file).then((url) => {
+        this.productForm.value.image = url;
+        product = this.productForm.value;
+        this.onSubmitted.emit(product);
+      });
+    } else {
+      console.log('Upload file please');
+    }
   }
 }

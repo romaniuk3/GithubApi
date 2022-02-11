@@ -15,7 +15,7 @@ export class ProductsCreateComponent implements OnInit {
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar) { }
+    ) { }
 
   ngOnInit(): void {
   }

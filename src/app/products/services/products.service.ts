@@ -6,13 +6,19 @@ import {
   Firestore, addDoc, collection, collectionData,
   doc, docData, deleteDoc, setDoc
 } from '@angular/fire/firestore';
+import {
+  Storage,
+  ref, uploadBytes, getDownloadURL
+} from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore,
+              private storage: Storage
+  ) { }
 
   public getAll() {
     const productsRef = collection(this.firestore, 'products');
@@ -39,4 +45,15 @@ export class ProductsService {
     const productDocRef = doc(this.firestore, `products/${productId}`);
     return deleteDoc(productDocRef);
   }
+
+  public uploadImage(file: File): Promise<any> {
+    const fileName = `${file?.lastModified}`
+    const storageRef = ref(this.storage, fileName);
+
+    return uploadBytes(storageRef, file).then((snapshot) => {
+      const fileRef = ref(this.storage, fileName);
+      return getDownloadURL(fileRef);
+    });
+  }
+
 }

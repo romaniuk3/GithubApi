@@ -52,9 +52,9 @@
     <label for="image" class="input__file-button">
       <span class="input__file-button-text">Choose image</span>
     </label>
-    <span>{{path?.name}}</span>
+    <span>{{file?.name}}</span>
     <p *ngIf="isUpload" class="input__status">Uploaded</p>
-    <input style="visibility: hidden" type="file" (change)="upload($event)"
+    <input style="visibility: hidden" type="file" (change)="setFile($event)"
            formControlName="image" accept=".jpg, .jpeg, .png" name="" id="image">
   </div>
 
