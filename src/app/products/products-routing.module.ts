@@ -21,6 +21,10 @@ const routes: Routes = [
         component: ProductsCreateComponent
       },
       {
+        path: 'orders',
+        loadChildren: () => import('./modules/orders/orders.module').then((m) => m.OrdersModule)
+      },
+      {
         path: ':product_id',
         children: [
           {
@@ -43,7 +47,7 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-    
+
   }
 ];
 

@@ -15,6 +15,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { SharedModule } from '../shared/shared.module';
 import { DateFixPipe } from './pipes/date-fix.pipe';
 import {MatFileUploadModule} from "angular-material-fileupload";
+import {OrdersModule} from "./modules/orders/orders.module";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatFileUploadModule} from "angular-material-fileupload";
     ReactiveFormsModule,
     MaterialExampleModule,
     SharedModule,
-    MatFileUploadModule
+    MatFileUploadModule,
+    OrdersModule
   ],
   providers: [
     ProductsService,
